@@ -1,23 +1,30 @@
-import logo from './logo.svg';
+
 import './App.css';
 
+import Header from './Components/Header';
+import Main from './Components/Main';
+import Footer from './Components/Footer';
+import Puzzle from './Components/Puzzle'; 
+import { useState } from 'react';
+import Endpart from './Components/Endpart';
+
 function App() {
+  const [isPuzzleSolved, setIsPuzzleSolved] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {!isPuzzleSolved ? (
+        <Puzzle onSolve={() => setIsPuzzleSolved(true)} /> 
+      ) : (
+        <>
+          <Header />
+          <div className="flex flex-col gap-2 justify-center items-center"> 
+            <Main />
+          </div>
+            <Endpart/>
+          <Footer />
+        </>
+      )}
     </div>
   );
 }
